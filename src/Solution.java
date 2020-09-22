@@ -40,4 +40,29 @@ class Solution {
 
         return true;
     }
+
+    /*寻找数组的中心索引*/
+    public int pivotIndex(int[] nums) {
+        if (nums.length <= 2) {
+            return -1;
+        }
+        int index;
+        int left = 0;
+        int right = 0;
+        for (index = 1; index < nums.length; index++) {
+            right += nums[index];
+        }
+        for (index = 0; index < nums.length; index++) {
+            if (left == right) {
+                return index;
+            } else {
+                if (index == nums.length - 1) {
+                    return -1;
+                }
+                left += nums[index];
+                right -= nums[index + 1];
+            }
+        }
+        return -1;
+    }
 }
